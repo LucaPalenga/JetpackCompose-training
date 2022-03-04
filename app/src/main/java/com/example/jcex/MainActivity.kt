@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -26,11 +28,115 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            MessageCard(Message("Ciao", "Pippo"))
-            Conversation(msgs = SampleData.conversationSample)
 
+            //  MessageCard(Message("Ciao", "Pippo"))
+            //  Conversation(msgs = SampleData.conversationSample)
+
+            TextContent()
         }
     }
+
+    // region State&Compose
+
+    @Composable
+    fun TextContent() {
+        //remember -> preserva lo stato della variabile nelle ricomposizioni,
+        // ma NON durante i cambiamenti di configurazione (tipo cambio tema)
+        //  var name: String by remember { mutableStateOf("") }
+
+        //rememberSaveable -> preserva lo stato della variabile anche durante
+        // i cambiamenti di configurazione perchè salva lo stato in un bundle
+        var name: String by rememberSaveable { mutableStateOf("") }
+
+        Column(modifier = Modifier.padding(8.dp)) {
+            Text(
+                text = "Ciao $name",
+                style = MaterialTheme.typography.h5
+            )
+
+            OutlinedTextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text(text = "Your name") }
+            )
+        }
+    }
+
+    // region state hoisting
+    //  pattern che rende più riusabile un composable
+
+    @Composable
+    fun TextScreen() {
+        var name: String by rememberSaveable { mutableStateOf("") }
+        TextContent2(name = name, onNameChanged = { name = it })
+
+        //in questo caso
+        // lo stato (name) va in TextContent2
+        // l'evento (onNameChanged) va su in TextScreen
+    }
+
+    //modificato aggiungendo in input
+    // name - parametro immutabile da rappresentare
+    // lambda - evento chiamato quando lo stato di name cambia
+    @Composable
+    fun TextContent2(name: String, onNameChanged: (String) -> Unit) {
+        Column(modifier = Modifier.padding(8.dp)) {
+            Text(
+                text = "Ciao $name",
+                style = MaterialTheme.typography.h5
+            )
+
+            OutlinedTextField(
+                value = name,
+                onValueChange = onNameChanged,
+                label = { Text(text = "Your name") }
+            )
+        }
+    }
+
+    // endregion state hoisting
+
+    // region ViewModel
+
+    //TODO
+    //    class HelloViewModel : ViewModel() {
+    //        private val _name: MutableLiveData<String!> = MutableLiveData("")
+    //        val name: LiveData<String> = _name
+    //
+    //    }
+    //
+    //    @Composable
+    //    fun HelloScreen(helloViewModel: HelloViewModel = viewModel()) {
+    //        val name:String by helloViewModel.name.observeAsState("")
+    //
+    //    }
+
+    // endregion ViewModel
+
+    // endregion State&Compose
+
+    // region Conversation
+
+    @Composable
+    private fun Conversation(msgs: List<Message>) {
+        LazyColumn() {
+            items(msgs.size) { index ->
+                MessageCard(msg = msgs[index])
+            }
+        }
+    }
+
+    //    @Preview
+    @Composable
+    fun PreviewConversation() {
+        Conversation(msgs = SampleData.conversationSample)
+    }
+
+    // endregion Conversation
+
+    // region Message
+
+    class Message(val title: String, val body: String)
 
     @Composable
     private fun MessageCard(msg: Message) {
@@ -89,92 +195,7 @@ class MainActivity : ComponentActivity() {
         )
     }
 
-    @Composable
-    private fun Conversation(msgs: List<Message>) {
-        LazyColumn() {
-            items(msgs.size) { index ->
-                MessageCard(msg = msgs[index])
-            }
-        }
-    }
+    // endregion Message
 
-//    @Preview
-//    @Composable
-//    fun PreviewConversation() {
-//        Conversation(msgs = SampleData.conversationSample)
-//    }
-
-    class Message(val title: String, val body: String)
-
-    object SampleData {
-        // Sample conversation data
-        val conversationSample = listOf(
-            Message(
-                "Colleague",
-                "Test...Test...Test..."
-            ),
-            Message(
-                "Colleague",
-                "List of Android versions:\n" +
-                        "Android KitKat (API 19)\n" +
-                        "Android Lollipop (API 21)\n" +
-                        "Android Marshmallow (API 23)\n" +
-                        "Android Nougat (API 24)\n" +
-                        "Android Oreo (API 26)\n" +
-                        "Android Pie (API 28)\n" +
-                        "Android 10 (API 29)\n" +
-                        "Android 11 (API 30)\n" +
-                        "Android 12 (API 31)\n"
-            ),
-            Message(
-                "Colleague",
-                "I think Kotlin is my favorite programming language.\n" +
-                        "It's so much fun!"
-            ),
-            Message(
-                "Colleague",
-                "Searching for alternatives to XML layouts..."
-            ),
-            Message(
-                "Colleague",
-                "Hey, take a look at Jetpack Compose, it's great!\n" +
-                        "It's the Android's modern toolkit for building native UI." +
-                        "It simplifies and accelerates UI development on Android." +
-                        "Less code, powerful tools, and intuitive Kotlin APIs :)"
-            ),
-            Message(
-                "Colleague",
-                "It's available from API 21+ :)"
-            ),
-            Message(
-                "Colleague",
-                "Writing Kotlin for UI seems so natural, Compose where have you been all my life?"
-            ),
-            Message(
-                "Colleague",
-                "Android Studio next version's name is Arctic Fox"
-            ),
-            Message(
-                "Colleague",
-                "Android Studio Arctic Fox tooling for Compose is top notch ^_^"
-            ),
-            Message(
-                "Colleague",
-                "I didn't know you can now run the emulator directly from Android Studio"
-            ),
-            Message(
-                "Colleague",
-                "Compose Previews are great to check quickly how a composable layout looks like"
-            ),
-            Message(
-                "Colleague",
-                "Previews are also interactive after enabling the experimental setting"
-            ),
-            Message(
-                "Colleague",
-                "Have you tried writing build.gradle with KTS?"
-            ),
-        )
-    }
 
 }

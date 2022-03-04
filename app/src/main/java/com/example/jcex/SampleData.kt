@@ -1,17 +1,14 @@
 package com.example.jcex
 
-/***
- * PAllUA - 04/03/22
- */
 object SampleData {
 
     // Sample conversation data
     val conversationSample = listOf(
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Test...Test...Test..."
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "List of Android versions:\n" +
                     "Android KitKat (API 19)\n" +
@@ -24,51 +21,51 @@ object SampleData {
                     "Android 11 (API 30)\n" +
                     "Android 12 (API 31)\n"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "I think Kotlin is my favorite programming language.\n" +
                     "It's so much fun!"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Searching for alternatives to XML layouts..."
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Hey, take a look at Jetpack Compose, it's great!\n" +
                     "It's the Android's modern toolkit for building native UI." +
                     "It simplifies and accelerates UI development on Android." +
                     "Less code, powerful tools, and intuitive Kotlin APIs :)"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "It's available from API 21+ :)"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Writing Kotlin for UI seems so natural, Compose where have you been all my life?"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Android Studio next version's name is Arctic Fox"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Android Studio Arctic Fox tooling for Compose is top notch ^_^"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "I didn't know you can now run the emulator directly from Android Studio"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Compose Previews are great to check quickly how a composable layout looks like"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Previews are also interactive after enabling the experimental setting"
         ),
-        MainActivity.Message(
+        Message(
             "Colleague",
             "Have you tried writing build.gradle with KTS?"
         ),

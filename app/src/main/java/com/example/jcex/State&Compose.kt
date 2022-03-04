@@ -18,12 +18,16 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun TextContent() {
-    //remember -> preserva lo stato della variabile nelle ricomposizioni,
-    // ma NON durante i cambiamenti di configurazione (tipo cambio tema)
+    /**
+     * remember -> preserva lo stato della variabile nelle ricomposizioni,
+     * ma NON durante i cambiamenti di configurazione (tipo cambio tema)
+     */
     //  var name: String by remember { mutableStateOf("") }
 
-    //rememberSaveable -> preserva lo stato della variabile anche durante
-    // i cambiamenti di configurazione perchè salva lo stato in un bundle
+    /**
+     * rememberSaveable -> preserva lo stato della variabile anche durante
+     * i cambiamenti di configurazione perchè salva lo stato in un bundle
+     */
     var name: String by rememberSaveable { mutableStateOf("") }
 
     Column(modifier = Modifier.padding(8.dp)) {
@@ -41,16 +45,17 @@ fun TextContent() {
 }
 
 // region state hoisting
-//  pattern che rende più riusabile un composable
+/**
+ * Lo State Hoisting è un pattern che rende più riusabile e testabile un composable
+ */
 
+//in questo caso
+// lo stato (name) va in TextContent2
+// l'evento (onNameChanged) va su in TextScreen
 @Composable
 fun TextScreen() {
     var name: String by rememberSaveable { mutableStateOf("") }
     TextContent2(name = name, onNameChanged = { name = it })
-
-    //in questo caso
-    // lo stato (name) va in TextContent2
-    // l'evento (onNameChanged) va su in TextScreen
 }
 
 //modificato aggiungendo in input

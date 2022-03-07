@@ -23,7 +23,13 @@ class MainActivity : ComponentActivity() {
             //  SimpleList()
             //  LazyList()
             //  LazyScrollingList()
-            CustomColumnLayoutLab()
+            //  CustomColumnLayoutLab()
+            //  StraggeredGridLab()
+            //  StraggeredGridWithCustomModifierLab()
+            //  ConstraintLayoutContent()
+            //  DecoupledConstraintLayout()
+            //  TwoTexts(text1 = "Hi", text2 = "there")
+
         }
     }
 

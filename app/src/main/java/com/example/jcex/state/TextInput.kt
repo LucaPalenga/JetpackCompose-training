@@ -1,26 +1,32 @@
 package com.example.jcex.state
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
+import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun TodoInputTextField(
     text: String,
     onTextChange: (String) -> Unit,
+    onImeAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
 //fun TodoInputTextField(modifier: Modifier = Modifier) {
@@ -52,7 +58,26 @@ fun TodoInputTextField(
      *      |_ TodoEditButton
      */
 
-    TextField(value = text, onValueChange = onTextChange, modifier = modifier)
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val imeActionVisible = text.isNotBlank()
+
+    TextField(
+        value = text, onValueChange = onTextChange,
+        //keyboardOptions -> Mostra il Done IME Action
+        keyboardOptions = KeyboardOptions.Default.copy(
+            imeAction = if (imeActionVisible) {
+                ImeAction.Done
+            } else {
+                ImeAction.None
+            }
+        ),
+        //keyboardActions -> Azione da eseguire su specifica IME action
+        keyboardActions = KeyboardActions(onDone = {
+            onImeAction()
+            keyboardController?.hide()
+        }),
+        maxLines = 1, modifier = modifier
+    )
 }
 
 @Composable
@@ -87,30 +112,89 @@ fun TodoEditButton(
 fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
     // Sposto qui le variabili di stato
     val (text, setText) = remember { mutableStateOf("") }
+    val (icon, setIcon) = remember { mutableStateOf(TodoIcon.Default) }
+    val iconVisible = text.isNotBlank()
 
-    Column {
+    // creo una funzione submit per poterla usare sia all'onClick del bottone, sia come ImeAction
+    val submit = {
+        onItemComplete(TodoItem(text, icon)) // EVENT UP
+        setIcon(TodoIcon.Default)
+        setText("") // azzero il textfield
+    }
+
+    Column(Modifier.padding(horizontal = 16.dp)) {
         Row(
-            Modifier
-                .padding(horizontal = 16.dp)
-                .padding(vertical = 16.dp)
+            Modifier.padding(top = 16.dp)
         ) {
             TodoInputTextField(
                 text = text,
                 onTextChange = setText,
+                onImeAction = submit,
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp)
             )
             TodoEditButton(
-                onClick = {
-                    onItemComplete(TodoItem(text)) // EVENT UP
-                    setText("") // azzero il textfield
-                },
+                onClick = submit,
                 text = "Add",
                 modifier = Modifier.align(Alignment.CenterVertically),
                 enabled = text.isNotBlank()
             )
         }
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            /**
+             * There is no "visibility" property in compose.
+             *  Since compose can dynamically change the composition, you do not need to set visibility gone.
+             *  Instead, remove composables from the composition.
+             */
+            if (iconVisible) {
+                //anche qui state hoisting, passo le variabili di stato e un evento con cui poter richiedere di modificarle al figlio
+                IconRow(todoIcon = icon, onIconSelected = setIcon)
+            } else {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun IconRow(
+    todoIcon: TodoIcon,
+    onIconSelected: (TodoIcon) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row() {
+        for (icon in TodoIcon.values()) {
+            SelectableIconButton(
+                iconImageVector = icon.imageVector,
+                iconContentDescription = icon.contentDescription,
+                onIconSelected = { onIconSelected(icon) },
+                isSelected = icon == todoIcon
+            )
+        }
+    }
+}
+
+@Composable
+fun SelectableIconButton(
+    iconImageVector: ImageVector,
+    @StringRes iconContentDescription: Int,
+    onIconSelected: () -> Unit,
+    isSelected: Boolean = false,
+    modifier: Modifier = Modifier
+) {
+    val tint = if (isSelected) {
+        MaterialTheme.colors.primary
+    } else {
+        MaterialTheme.colors.onSurface.copy(alpha = 0.6f)
+    }
+
+    TextButton(onClick = onIconSelected) {
+        Icon(
+            imageVector = iconImageVector,
+            tint = tint,
+            contentDescription = stringResource(id = iconContentDescription)
+        )
     }
 }
 

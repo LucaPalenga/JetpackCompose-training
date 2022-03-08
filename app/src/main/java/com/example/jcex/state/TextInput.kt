@@ -109,11 +109,10 @@ fun TodoEditButton(
  */
 
 @Composable
-fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
+fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
     // Sposto qui le variabili di stato
     val (text, setText) = remember { mutableStateOf("") }
     val (icon, setIcon) = remember { mutableStateOf(TodoIcon.Default) }
-    val iconVisible = text.isNotBlank()
 
     // creo una funzione submit per poterla usare sia all'onClick del bottone, sia come ImeAction
     val submit = {
@@ -122,13 +121,31 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
         setText("") // azzero il textfield
     }
 
+    /**
+     * Created by Refactor > Function
+     * Now we have 2 composables:
+     * - TodoItemEntryInput (stateful)
+     * - TodoItemInput (stateless)
+     */
+    TodoItemInput(text, setText, icon, iconRowVisible = text.isNotBlank(), setIcon, submit)
+}
+
+@Composable
+fun TodoItemInput(
+    text: String,
+    onTextChanged: (String) -> Unit,
+    icon: TodoIcon,
+    iconRowVisible: Boolean,
+    onIconChanged: (TodoIcon) -> Unit,
+    submit: () -> Unit
+) {
     Column(Modifier.padding(horizontal = 16.dp)) {
         Row(
             Modifier.padding(top = 16.dp)
         ) {
             TodoInputTextField(
                 text = text,
-                onTextChange = setText,
+                onTextChange = onTextChanged,
                 onImeAction = submit,
                 modifier = Modifier
                     .weight(1f)
@@ -147,9 +164,9 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
              *  Since compose can dynamically change the composition, you do not need to set visibility gone.
              *  Instead, remove composables from the composition.
              */
-            if (iconVisible) {
+            if (iconRowVisible) {
                 //anche qui state hoisting, passo le variabili di stato e un evento con cui poter richiedere di modificarle al figlio
-                IconRow(todoIcon = icon, onIconSelected = setIcon)
+                IconRow(todoIcon = icon, onIconSelected = onIconChanged)
             } else {
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -201,5 +218,5 @@ fun SelectableIconButton(
 @Preview
 @Composable
 fun TodoItemInputPreview() {
-    TodoItemInput(onItemComplete = {})
+    TodoItemEntryInput(onItemComplete = {})
 }

@@ -36,7 +36,7 @@ fun TodoScreen(
 ) {
     Column() {
 
-        TodoItemInput(onItemComplete = onAddItem)
+        TodoItemEntryInput(onItemComplete = onAddItem)
 
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(items) {

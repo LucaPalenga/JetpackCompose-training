@@ -4,4 +4,10 @@
     <style name="Theme.JCEx" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
+
+    <style name="Theme.Dynamic" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorSecondary">@color/another_custom_color</item>
+    </style>
 </resources>

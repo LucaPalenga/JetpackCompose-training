@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
 
             // endregion layouts
 
-
         }
     }
 

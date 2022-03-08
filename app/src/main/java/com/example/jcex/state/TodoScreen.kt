@@ -35,6 +35,9 @@ fun TodoScreen(
     onRemoveItem: (TodoItem) -> Unit
 ) {
     Column() {
+
+        TodoItemInput(onItemComplete = onAddItem)
+
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(items) {
                 TodoRow(

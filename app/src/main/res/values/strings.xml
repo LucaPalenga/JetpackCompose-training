@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">JCEx</string>
+    <string name="cd_expand" translatable="false">Expand</string>
+    <string name="cd_collapse" translatable="false">Collapse</string>
+    <string name="cd_crop_square" translatable="false">Crop</string>
+    <string name="cd_done" translatable="false">Done</string>
+    <string name="cd_event" translatable="false">Event</string>
+    <string name="cd_privacy" translatable="false">Privacy</string>
+    <string name="cd_restore" translatable="false">Restore</string>
 </resources>

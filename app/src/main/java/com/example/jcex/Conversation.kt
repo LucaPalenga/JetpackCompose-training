@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 // region Conversation
 
 @Composable
-private fun Conversation(msgs: List<Message>) {
+fun Conversation(msgs: List<Message>) {
     LazyColumn() {
         items(msgs.size) { index ->
             MessageCard(msg = msgs[index])
@@ -43,7 +43,7 @@ fun PreviewConversation() {
 class Message(val title: String, val body: String)
 
 @Composable
-private fun MessageCard(msg: Message) {
+fun MessageCard(msg: Message) {
     var isExpanded by remember { mutableStateOf(false) }
     val surfaceColor: Color by animateColorAsState(
         targetValue =

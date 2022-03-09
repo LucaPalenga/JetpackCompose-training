@@ -127,7 +127,13 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
      * - TodoItemEntryInput (stateful)
      * - TodoItemInput (stateless)
      */
-    TodoItemInput(text, setText, icon, iconRowVisible = text.isNotBlank(), setIcon, submit)
+    TodoItemInput(text, setText, icon, setIcon, submit) {
+        TodoEditButton(
+            onClick = submit,
+            text = "Add",
+            enabled = text.isNotBlank()
+        )
+    }
 }
 
 @Composable
@@ -135,10 +141,17 @@ fun TodoItemInput(
     text: String,
     onTextChanged: (String) -> Unit,
     icon: TodoIcon,
-    iconRowVisible: Boolean,
     onIconChanged: (TodoIcon) -> Unit,
-    submit: () -> Unit
+    submit: () -> Unit,
+    buttonSlot: @Composable () -> Unit
+    /**
+     * gli Slot sono parametri di un composable che permettono al chiamante di
+     * descrivere una sezione di schermo
+     * Slot: @Composable () -> Unit
+     */
 ) {
+    val iconRowVisible = text.isNotEmpty()
+
     Column(Modifier.padding(horizontal = 16.dp)) {
         Row(
             Modifier.padding(top = 16.dp)
@@ -151,12 +164,17 @@ fun TodoItemInput(
                     .weight(1f)
                     .padding(end = 8.dp)
             )
-            TodoEditButton(
-                onClick = submit,
-                text = "Add",
-                modifier = Modifier.align(Alignment.CenterVertically),
-                enabled = text.isNotBlank()
-            )
+            //Utilizzo lo slot per disegnare i bottoni
+            //  TodoEditButton(
+            //      onClick = submit,
+            //      text = "Add",
+            //      modifier = Modifier.align(Alignment.CenterVertically),
+            //      enabled = text.isNotBlank()
+            //  )
+            Spacer(modifier = Modifier.width(8.dp))
+            Box(modifier = Modifier.align(Alignment.CenterVertically)) {
+                buttonSlot()
+            }
         }
         Row(verticalAlignment = Alignment.CenterVertically) {
             /**
@@ -173,6 +191,41 @@ fun TodoItemInput(
         }
     }
 }
+
+@Composable
+fun TodoItemInlineEditor(
+    item: TodoItem,
+    onEditItemChange: (TodoItem) -> Unit,
+    onEditDone: () -> Unit,
+    onRemoveItem: (TodoItem) -> Unit
+) = TodoItemInput(
+    text = item.task,
+    /**
+     *   copy -> funzione Kotlin autogenerata che genera una copia dell'elemento
+     *   di quella classe con eventualmente parametri che indicano i dati
+     *   interni che devono essere modificati
+     */
+    onTextChanged = { onEditItemChange(item.copy(task = it)) },
+    icon = item.icon,
+    onIconChanged = { onEditItemChange(item.copy(icon = it)) },
+    submit = onEditDone
+) {
+    Row {
+        TextButton(onClick = { onEditDone() }) {
+            Text(
+                text = "\uD83D\uDCBE",
+                modifier = Modifier.width(30.dp)
+            )
+        }
+        TextButton(onClick = { onRemoveItem(item) }) {
+            Text(
+                text = "❌",
+                modifier = Modifier.width(30.dp)
+            )
+        }
+    }
+}
+
 
 @Composable
 fun IconRow(
@@ -214,6 +267,7 @@ fun SelectableIconButton(
         )
     }
 }
+
 
 @Preview
 @Composable

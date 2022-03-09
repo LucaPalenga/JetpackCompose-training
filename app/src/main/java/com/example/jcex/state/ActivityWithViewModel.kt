@@ -6,8 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import com.example.jcex.ui.theme.JCExTheme
 
 
@@ -44,8 +42,8 @@ private fun TodoActivityScreen(viewModel: TodoVewModel) {
      * by -> permette di unwrappare automaticamente State<T> da observeAsState
      * in un T (in questo caso State<List<TodoItem>> in List<TodoItem>)
      */
-    val items: List<TodoItem> by viewModel.todoItems.observeAsState(listOf())
-    //  val items: State<List<TodoItem>> = viewModel.todoItems.observeAsState(listOf())
+    //  val items: List<TodoItem> by viewModel.todoItems.observeAsState(listOf())
+    //  (altro modo) val items: State<List<TodoItem>> = viewModel.todoItems.observeAsState(listOf())
 
     /**
      * Al componente passo l'oggetto e gli eventi del ViewModel, perchè è il ViewModel che
@@ -56,9 +54,20 @@ private fun TodoActivityScreen(viewModel: TodoVewModel) {
      * Composable --evento-> ViewModel
      * ViewModel --stato-> Composable
      */
+    //  TodoScreen(
+    //  items = items,
+    ////    onAddItem = { viewModel.addItem(it) },
+    //  onAddItem = viewModel::addItem,     //Altro modo di scrivere una lambda che chiama un metodo
+    //  onRemoveItem = { viewModel.removeItem(it) })
+
+    //Con l'utilizzo di mutableStateListOf
     TodoScreen(
-        items = items,
-//        onAddItem = { viewModel.addItem(it) },
-        onAddItem = viewModel::addItem,     //Altro modo di scrivere una lambda che chiama un metodo
-        onRemoveItem = { viewModel.removeItem(it) })
+        items = viewModel.todoItems,
+        currentlyEditing = viewModel.currentEditItem,
+        onAddItem = viewModel::addItem,
+        onRemoveItem = viewModel::removeItem,
+        onStartEdit = viewModel::onEditItemSelected,
+        onEditItemChange = viewModel::onEditItemChange,
+        onEditDone = viewModel::onEditDone
+    )
 }

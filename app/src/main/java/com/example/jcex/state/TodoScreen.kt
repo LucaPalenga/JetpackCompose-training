@@ -4,15 +4,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jcex.layouts.padding
@@ -31,20 +29,58 @@ import com.example.jcex.layouts.padding
 @Composable
 fun TodoScreen(
     items: List<TodoItem>,
+    currentlyEditing: TodoItem?,
     onAddItem: (TodoItem) -> Unit,
-    onRemoveItem: (TodoItem) -> Unit
+    onRemoveItem: (TodoItem) -> Unit,
+    onStartEdit: (TodoItem) -> Unit,
+    onEditItemChange: (TodoItem) -> Unit,
+    onEditDone: () -> Unit
 ) {
-    Column() {
+    Column {
 
-        TodoItemEntryInput(onItemComplete = onAddItem)
+        // Changing header on editing
+        if (currentlyEditing == null) {
+            TodoItemEntryInput(onItemComplete = onAddItem)
+        } else {
+            Text(
+                text = "Editing mode",
+                style = MaterialTheme.typography.h6,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            )
+        }
 
-        LazyColumn(modifier = Modifier.weight(1f)) {
+        LazyColumn(
+            modifier = Modifier.weight(1f),
+            contentPadding = PaddingValues(top = 8.dp)
+        ) {
             items(items) {
-                TodoRow(
-                    todoItem = it,
-                    onItemClicked = { onRemoveItem(it) },
-                    modifier = Modifier.fillParentMaxWidth()
-                )
+                if (currentlyEditing?.id == it.id) {
+                    TodoItemInlineEditor(
+                        item = currentlyEditing,
+                        onEditItemChange = onEditItemChange,
+                        onEditDone = onEditDone,
+                        onRemoveItem = onRemoveItem
+                    )
+                } else {
+                    TodoRow(
+                        todoItem = it,
+                        /**
+                         * Cosa succede al click?
+                         * onStartEdit richiama viewModel::onEditItemSelected quindi il
+                         * view model modificherà la currentEditPosition e dato che il
+                         * currentlyEditing (che controlla il compose parent a riga 50)
+                         * è il currentEditItem il cui getter dipende dalla currentEditPosition
+                         * (il cui stato è observable), questo scatenerà una recomposition
+                         * che disegnerà un TodoItemInlineEditor invece di una TodoRow
+                         */
+                        onItemClicked = onStartEdit,
+//                        onItemClicked = { onRemoveItem(it) },
+                        modifier = Modifier.fillParentMaxWidth()
+                    )
+                }
             }
         }
 
@@ -134,5 +170,5 @@ fun TodoScreenPreview() {
         generateRandomTodoItem(),
         generateRandomTodoItem()
     )
-    TodoScreen(items = items, onAddItem = {}, onRemoveItem = {})
+    TodoScreen(items, null, {}, {}, {}, {}, {})
 }

@@ -70,4 +70,28 @@ object SampleData {
             "Have you tried writing build.gradle with KTS?"
         ),
     )
+
+    // ComplexCustomLayout & Chip example
+    val topics = listOf(
+        "Arts & Crafts",
+        "Beauty",
+        "Books",
+        "Business",
+        "Comics",
+        "Culinary",
+        "Design",
+        "Fashion",
+        "Film",
+        "History",
+        "Maths",
+        "Music",
+        "People",
+        "Philosophy",
+        "Religion",
+        "Social sciences",
+        "Technology",
+        "TV",
+        "Writing"
+    )
+
 }

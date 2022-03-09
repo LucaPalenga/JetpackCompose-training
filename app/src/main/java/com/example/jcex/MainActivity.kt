@@ -15,7 +15,11 @@ class MainActivity : ComponentActivity() {
             DynamicTheme(colorProvider = ColorProvider(appColorScheme)) {
 //                MessageCard(Message("Ciao", "Pippo"))
                 Conversation(msgs = SampleData.conversationSample)
+            }
+            // region components
 
+            //  MessageCard(Message("Ciao", "Pippo"))
+            //  Conversation(msgs = SampleData.conversationSample)
 //                TextContent()
 
 //                JCExTheme() {
@@ -24,11 +28,22 @@ class MainActivity : ComponentActivity() {
 
 //                ComposeButton()
 
-//                SimpleList()
-//                LazyList()
-//                LazyScrollingList()
-//                CustomColumnLayoutLab()
-            }
+            // endregion components
+
+            // region layouts
+
+            //  SimpleList()
+            //  LazyList()
+            //  LazyScrollingList()
+            //  CustomColumnLayoutLab()
+            //  StraggeredGridLab()
+            //  StraggeredGridWithCustomModifierLab()
+            //  ConstraintLayoutContent()
+            //  DecoupledConstraintLayout()
+            //  TwoTexts(text1 = "Hi", text2 = "there")
+
+            // endregion layouts
+
         }
     }
 }

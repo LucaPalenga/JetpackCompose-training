@@ -16,7 +16,8 @@ import com.example.jcex.ui.theme.JCExTheme
 
 /**
  * Creazione di un layout custom attraverso il layout modifier
- * NB: gestisce il modifier di un singolo composable
+ * NB: Un modifier mi permette di customizzare il comportamento di un singolo composable
+ *     (praticamente faccio un override del modifier aggiungendo o modificando un comportamento)
  *
  * in generale:
  * fun Modifier.customLayoutModifier() = Modifier.layout { measurable, constraints -> }
@@ -24,7 +25,7 @@ import com.example.jcex.ui.theme.JCExTheme
 
 @Composable
 fun Modifier.firstBaselineToTop(baselineDp: Dp) =
-    //concatena questo modifier con il nuovo layout che sto creando
+    //concatena questo modifier con il nuovo che sto creando
     this.then(layout { measurable, constraints ->
 
         /**

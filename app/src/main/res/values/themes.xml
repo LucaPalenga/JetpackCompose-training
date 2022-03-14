@@ -5,6 +5,8 @@
         <item name="android:statusBarColor">@color/purple_700</item>
     </style>
 
+<!--    <style name="Theme.DynamicTheme" parent="Theme.Material3.DayNight" />-->
+
     <!-- theming compose -->
     <style name="Theme.ComposeTheming" parent="Theme.Material.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/status_bar</item>
@@ -18,4 +20,5 @@
         <item name="colorPrimary">@color/teal_200</item>
         <item name="colorSecondary">@color/another_custom_color</item>
     </style>
+
 </resources>

@@ -7,21 +7,19 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.JCEx">
+        android:supportsRtl="true">
         <activity
-            android:name=".theming.ThemingActivity"
+            android:name=".material3.Material3Activity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.ComposeTheming">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".theming.ThemingActivity" />
         <activity android:name=".state.ActivityWithViewModel" />
+        <activity android:name=".MainActivity" />
 
     </application>
 

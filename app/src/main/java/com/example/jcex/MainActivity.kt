@@ -3,6 +3,8 @@ package com.example.jcex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import com.example.jcex.animations.HomeAnimations
+import com.example.jcex.ui.theme.AnimationCodelabTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -45,6 +47,14 @@ class MainActivity : ComponentActivity() {
             //  TwoTexts(text1 = "Hi", text2 = "there")
 
             // endregion layouts
+
+            // region animations
+
+            AnimationCodelabTheme {
+                HomeAnimations()
+            }
+
+            // endregion animations
 
         }
     }

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".material3.Material3Activity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".theming.ThemingActivity" />
         <activity android:name=".state.ActivityWithViewModel" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".material3.Material3Activity" />
 
     </application>
 

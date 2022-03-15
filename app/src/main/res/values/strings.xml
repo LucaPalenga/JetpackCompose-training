@@ -8,7 +8,7 @@
     <string name="cd_privacy" translatable="false">Privacy</string>
     <string name="cd_restore" translatable="false">Restore</string>
 
-    <string name="app_name">Compose Theming</string>
+    <string name="app_name">Jatpack Compose Examples</string>
     <string name="app_title">Jetnews</string>
     <string name="top">Top Story</string>
     <string name="popular">Popular</string>
@@ -25,6 +25,15 @@
     <string name="edit">EDIT</string>
     <string name="edit_message">Edit feature is not supported</string>
     <string name="refresh">Refresh</string>
+    <string name="total">Total</string>
+    <string name="due">Due</string>
+
+    <string name="account_redacted">• • • • • </string>
+    <string name="accounts">Accounts</string>
+    <string name="bills">Bills</string>
+    <string name="sort">Sort</string>
+    <string name="see_all">SEE ALL</string>
+
     <string-array name="tasks">
         <item>Buy milk</item>
         <item>Choose curtain</item>
@@ -39,5 +48,4 @@
         <item>Festival next month</item>
         <item>New flower seeds available</item>
     </string-array>
-    
 </resources>

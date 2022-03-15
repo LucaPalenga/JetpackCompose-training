@@ -183,3 +183,4 @@ val AppTypography = androidx.compose.material3.Typography(
         letterSpacing = 0.5.sp,
     ),
 )
+

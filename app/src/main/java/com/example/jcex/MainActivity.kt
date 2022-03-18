@@ -3,8 +3,9 @@ package com.example.jcex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.jcex.animations.HomeAnimations
-import com.example.jcex.ui.theme.AnimationCodelabTheme
+import androidx.core.view.WindowCompat
+import com.example.jcex.accessibility.JetnewsApplication
+import com.example.jcex.accessibility.data.ui.JetnewsApp
 
 class MainActivity : ComponentActivity() {
 
@@ -50,12 +51,22 @@ class MainActivity : ComponentActivity() {
 
             // region animations
 
-            AnimationCodelabTheme {
-                HomeAnimations()
-            }
+//            AnimationCodelabTheme {
+//                HomeAnimations()
+//            }
 
             // endregion animations
 
+            // region accessibility
+
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+
+            val appContainer = (application as JetnewsApplication).container
+            setContent {
+                JetnewsApp(appContainer)
+            }
+
+            // endregion accessibility
         }
     }
 }

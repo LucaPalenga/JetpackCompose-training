@@ -10,7 +10,23 @@
     <color name="white">#FFFFFFFF</color>
     <color name="another_custom_color">#FFFBC02D</color>
 
-    <color name="red700">#dd0d3c</color>
-    <color name="red900">#c20029</color>
     <color name="status_bar">#c20029</color>
+
+    <color name="blue1">#FF758AA8</color>
+    <color name="blue2">#FF4C668C</color>
+    <color name="blue3">#FF2C4770</color>
+    <color name="blue4">#FF142E54</color>
+    <color name="blue5">#FF051A38</color>
+
+    <color name="red200">#FFF297A2</color>
+    <color name="red300">#FFEA6D7E</color>
+    <color name="red700">#FFdd0d3C</color>
+    <color name="red800">#FFD00036</color>
+    <color name="red900">#FFC20029</color>
+
+    <color name="yellow1">#FFFFF0AA</color>
+    <color name="yellow2">#FFD4C26A</color>
+    <color name="yellow3">#FFAA9739</color>
+    <color name="yellow4">#FF806D15</color>
+    <color name="yellow5">#FF554600</color>
 </resources>

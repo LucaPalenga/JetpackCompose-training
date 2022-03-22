@@ -3,9 +3,6 @@ package com.example.jcex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.core.view.WindowCompat
-import com.example.jcex.accessibility.JetnewsApplication
-import com.example.jcex.accessibility.data.ui.JetnewsApp
 
 class MainActivity : ComponentActivity() {
 
@@ -59,12 +56,12 @@ class MainActivity : ComponentActivity() {
 
             // region accessibility
 
-            WindowCompat.setDecorFitsSystemWindows(window, false)
-
-            val appContainer = (application as JetnewsApplication).container
-            setContent {
-                JetnewsApp(appContainer)
-            }
+//            WindowCompat.setDecorFitsSystemWindows(window, false)
+//
+//            val appContainer = (application as JetnewsApplication).container
+//            setContent {
+//                JetnewsApp(appContainer)
+//            }
 
             // endregion accessibility
         }

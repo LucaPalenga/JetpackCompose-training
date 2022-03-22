@@ -34,23 +34,9 @@
     <string name="sort">Sort</string>
     <string name="see_all">SEE ALL</string>
 
-    <string-array name="tasks">
-        <item>Buy milk</item>
-        <item>Choose curtain</item>
-        <item>Plant rosemary</item>
-        <item>Finish the essay</item>
-        <item>Receive new packages</item>
-        <item>Take a photo</item>
-    </string-array>
-    <string-array name="topics">
-        <item>2 new packages arrived</item>
-        <item>DIY project recommendation</item>
-        <item>Festival next month</item>
-        <item>New flower seeds available</item>
-    </string-array>
-
     <string name="load_error">Can\'t update latest news</string>
     <string name="retry">Retry</string>
+
     <string name="home_popular_section_title">Popular on Jetnews</string>
     <string name="home_post_min_read">%1$s - %2$d min read</string>
     <string name="cd_navigate_up">Navigate up</string>
@@ -68,13 +54,29 @@
     <string name="action_read_article">read article</string>
     <string name="state_not_subscribed">not subscribed</string>
     <string name="state_subscribed">subscribed</string>
-
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="third_fragment_label">Third Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment</string>
+
+    <string-array name="tasks">
+        <item>Buy milk</item>
+        <item>Choose curtain</item>
+        <item>Plant rosemary</item>
+        <item>Finish the essay</item>
+        <item>Receive new packages</item>
+        <item>Take a photo</item>
+    </string-array>
+    <string-array name="topics">
+        <item>2 new packages arrived</item>
+        <item>DIY project recommendation</item>
+        <item>Festival next month</item>
+        <item>New flower seeds available</item>
+    </string-array>
 </resources>

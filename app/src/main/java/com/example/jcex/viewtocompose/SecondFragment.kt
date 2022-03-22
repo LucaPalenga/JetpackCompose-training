@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -62,14 +61,6 @@ class SecondFragment : Fragment() {
             }
         return binding.root
 
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        binding.buttonSecond.setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
     }
 
     override fun onDestroyView() {
@@ -142,7 +133,7 @@ class SecondFragment : Fragment() {
                 Card(
                     onClick = { onThemeChanged() },
                     /**
-                     * Sto usando il primary del MateruakTheme quindi del tema
+                     * Sto usando il primary del MaterialTheme quindi del tema
                      * corrente!
                      */
                     backgroundColor = MaterialTheme.colors.primary
@@ -163,13 +154,26 @@ class SecondFragment : Fragment() {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.weight(1f)
             ) {
-                /**
-                 * Posso usare un tema diverso per ogni singolo componente
-                 */
-                Theme2() {
-                    Button(onClick = { findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment) }) {
-                        Text(text = stringResource(R.string.previous))
-                    }
+                NavigationButtons()
+            }
+        }
+    }
+
+    @Composable
+    fun NavigationButtons() {
+        /**
+         * Posso usare un tema diverso per ogni singolo componente
+         */
+        Theme2() {
+            Row {
+                TextButton(onClick = { findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment) }) {
+                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "prev")
+                    Text(text = stringResource(R.string.previous))
+                }
+                Spacer(modifier = Modifier.size(32.dp))
+                TextButton(onClick = { findNavController().navigate(R.id.action_SecondFragment_to_ThirdFragment) }) {
+                    Text(text = stringResource(R.string.next))
+                    Icon(imageVector = Icons.Default.ArrowForward, contentDescription = "next")
                 }
             }
         }

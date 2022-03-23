@@ -30,7 +30,7 @@ class ActivityWithViewModel : ComponentActivity() {
 }
 
 @Composable
-private fun TodoActivityScreen(viewModel: TodoVewModel) {
+fun TodoActivityScreen(viewModel: TodoVewModel) {
 
     /**
      * observeAsState -> "osserva" il LiveData<T> convertendolo in uno State<T>

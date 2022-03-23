@@ -37,8 +37,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.ViewToComposeTheming2">
+
+        <!--        android:name=".ViewToComposeActivity"-->
         <activity
-            android:name=".ViewToComposeActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ViewToComposeTheming2">
             <intent-filter>
@@ -47,6 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewToComposeActivity" />
     </application>
 
     <!--    <application-->

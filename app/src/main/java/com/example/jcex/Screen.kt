@@ -13,5 +13,5 @@ sealed class Screen(val route: String, val icon: ImageVector) {
     object Animations : Screen("animations", Icons.Filled.Animation)
     object Layouts : Screen("layouts", Icons.Filled.Layers)
     object Theming : Screen("theming", Icons.Filled.Style)
-//    object ViewToComposeScreen : Screen("view_to_compose", Icons.Filled.ViewModule)
+    object ViewToComposeScreen : Screen("view_to_compose", Icons.Filled.ViewModule)
 }

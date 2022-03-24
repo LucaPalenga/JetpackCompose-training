@@ -50,40 +50,34 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewToComposeActivity" />
+
+        <!--        <activity-->
+        <!--            android:name=".navigation.RallyActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:label="@string/app_name">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN" />-->
+        <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+        <!--            </intent-filter>-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.VIEW" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+        <!--                <data-->
+        <!--                    android:host="accounts"-->
+        <!--                    android:scheme="rally" />-->
+        <!--            </intent-filter>-->
+
+        <!--        </activity>-->
+
+        <!--        <activity android:name=".theming.ThemingActivity" />-->
+        <!--        <activity android:name=".state.ActivityWithViewModel" />-->
+        <!--        <activity android:name=".material3.Material3Activity" />-->
+
     </application>
 
-    <!--    <application-->
-    <!--        android:allowBackup="true"-->
-    <!--        android:icon="@mipmap/ic_launcher"-->
-    <!--        android:label="@string/app_name"-->
-    <!--        android:roundIcon="@mipmap/ic_launcher_round"-->
-    <!--        android:supportsRtl="true">-->
-    <!--        <activity-->
-    <!--            android:name=".navigation.RallyActivity"-->
-    <!--            android:exported="true"-->
-    <!--            android:label="@string/app_name">-->
-    <!--            <intent-filter>-->
-    <!--                <action android:name="android.intent.action.MAIN" />-->
-    <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-    <!--            </intent-filter>-->
-    <!--            <intent-filter>-->
-    <!--                <action android:name="android.intent.action.VIEW" />-->
-
-    <!--                <category android:name="android.intent.category.DEFAULT" />-->
-    <!--                <category android:name="android.intent.category.BROWSABLE" />-->
-
-    <!--                <data-->
-    <!--                    android:host="accounts"-->
-    <!--                    android:scheme="rally" />-->
-    <!--            </intent-filter>-->
-
-    <!--        </activity>-->
-    <!--        <activity android:name=".theming.ThemingActivity" />-->
-    <!--        <activity android:name=".state.ActivityWithViewModel" />-->
-    <!--        <activity android:name=".material3.Material3Activity" />-->
-
-    <!--    </application>-->
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!--    <uses-permission android:name="android.permission.INTERNET" />-->
 
 </manifest>

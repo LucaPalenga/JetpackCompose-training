@@ -148,7 +148,6 @@ class MainActivity : ComponentActivity() {
                 composable(Screen.Theming.route) {
                     Home()
                 }
-
                 // ???
 //                fragment<FirstFragment>(Screen.ViewToComposeScreen.route) {
 //                    navigationController.navigatorProvider.getNavigator(R.id.nav_host_fragment_content_main)
@@ -211,7 +210,9 @@ class MainActivity : ComponentActivity() {
     @Preview
     @Composable
     fun JCExAppPreview() {
-        JCExApp()
+        MdcTheme {
+            JCExApp()
+        }
     }
 
 }

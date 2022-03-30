@@ -1,6 +1,8 @@
 package com.example.jcex.ui.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -183,4 +185,17 @@ val AppTypography = androidx.compose.material3.Typography(
         letterSpacing = 0.5.sp,
     ),
 )
+
+
+/**
+ * Custom style typography
+ * Just implements an extension of typography and you can call it in you composables
+ * with MaterialTheme.typography.customStyle
+ */
+
+val Typography.customStyle: TextStyle
+    @Composable get() = MaterialTheme.typography.h5.copy(
+        fontSize = 28.sp,
+        fontWeight = FontWeight.SemiBold
+    )
 

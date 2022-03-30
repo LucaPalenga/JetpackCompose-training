@@ -53,7 +53,7 @@ fun ComponentsList(navController: NavHostController, components: List<String>) {
 @Composable
 fun NavigationHost(navController: NavHostController) {
     val componentsExamples = listOf(
-        "Buttons", "Chip", "ImageCard", "Lists", "Scaffold"
+        "Buttons", "Chip", "ImageCard", "Lists", "Scaffold", "HalfImageCard"
     )
 
     NavHost(navController = navController, startDestination = "ComposableScreen") {
@@ -74,6 +74,9 @@ fun NavigationHost(navController: NavHostController) {
         }
         composable("Scaffold") {
             LayoutLab()
+        }
+        composable("HalfImageCard") {
+            HalfImageCard()
         }
     }
 }

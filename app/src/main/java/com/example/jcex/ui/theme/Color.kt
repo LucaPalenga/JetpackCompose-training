@@ -102,4 +102,9 @@ val ColorPalette = darkColors(
     onBackground = Color.White
 )
 
+val colorVal2 = Color(0xFF7FD1FA)
+val colorVal1 = Color(0xFF0072BC)
+val colorTotal = Color(0xFFAEAEAE)
+val statsIndicatorMiniCardColor = Color(0xFFF3F2F1)
+
 

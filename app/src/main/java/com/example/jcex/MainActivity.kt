@@ -24,7 +24,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.jcex.animations.HomeAnimations
 import com.example.jcex.components.ComposableScreen
-import com.example.jcex.kotlintraining.Lists
+import com.example.jcex.kotlintraining.KotlinTrainingScreen
 import com.example.jcex.layouts.StraggeredGridLab
 import com.example.jcex.state.TodoActivityScreen
 import com.example.jcex.state.TodoVewModel
@@ -131,7 +131,7 @@ class MainActivity : ComponentActivity() {
                     ComposableScreen()
                 }
                 composable(route = Screen.KotlinTrainingScreen.route) {
-                    Lists()
+                    KotlinTrainingScreen()
                 }
                 composable(route = Screen.StateScreen.route) {
                     val viewModel by viewModels<TodoVewModel>()

@@ -84,9 +84,9 @@ fun NavigationHost(navController: NavHostController) {
         composable("HalfImageCard") {
             HalfImageCard()
         }
-//        composable("CircularStatsIndicator") {
-//            CircularStatsIndicatorScreen()
-//        }
+        composable("CircularStatsIndicator") {
+            CircularStatsIndicatorScreen()
+        }
     }
 }
 

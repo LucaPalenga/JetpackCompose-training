@@ -38,23 +38,17 @@ val array2 = intArrayOf(2, 3)
 fun Lists() {
     Column() {
         CardContainer {
-            Column(modifier = Modifier.padding(8.dp)) {
-                TitleList("Lista immutabile - listOf")
-                ListContainer(modifier = Modifier.padding(top = 8.dp), list = immutableList)
-            }
+            TitleList("Lista immutabile - listOf")
+            ListContainer(list = immutableList)
         }
         CardContainer {
-            Column(modifier = Modifier.padding(8.dp)) {
-                TitleList("Lista mutabile - mutableListOf")
-                Subtitle(mutableList.remove(1).toString())
-                ListContainer(mutableList)
-            }
+            TitleList("Lista mutabile - mutableListOf")
+            Subtitle("Remove element 1 = ${mutableList.remove(1)}")
+            ListContainer(mutableList)
         }
         CardContainer {
-            Column(modifier = Modifier.padding(8.dp)) {
-                TitleList("Array (sempre immutabile) - arrayOf")
-                ArrayContainer(array1 as Array<Any>)
-            }
+            TitleList("Array (sempre immutabile) - arrayOf")
+            ArrayContainer(array1 as Array<Any>)
         }
 
     }
@@ -63,16 +57,20 @@ fun Lists() {
 @Composable
 fun CardContainer(content: @Composable () -> Unit) {
     Surface(
-        Modifier.fillMaxWidth().padding(8.dp),
+        Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
         shape = Shapes.medium,
         elevation = 2.dp
     ) {
-        content()
+        Column(modifier = Modifier.padding(8.dp)) {
+            content()
+        }
     }
 }
 
 @Composable
-fun TitleList(text: String, modifier: Modifier = Modifier) {
+fun TitleList(text: String, modifier: Modifier = Modifier.padding(vertical = 8.dp)) {
     Text(
         modifier = modifier,
         color = Color.Red,
@@ -86,7 +84,7 @@ fun Subtitle(text: String) {
     Text(
         fontWeight = FontWeight.Light,
         fontSize = 10.sp,
-        text = "Remove element 1 = $text"
+        text = text
     )
 }
 

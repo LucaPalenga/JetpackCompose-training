@@ -12,46 +12,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jcex.ui.theme.Shapes
 
-
-/**
- * Lista immutabile
- */
-val immutableList = listOf("pippo", "pluto", "paperino")
-
-/**
- * Lista mutabile
- */
-val mutableList = mutableListOf(1, 2, 3, 4)
-
-/**
- * Arrays
- */
-val array1 = arrayOf("pippo", 1, 2.0)
-val array2 = intArrayOf(2, 3)
-
 @Composable
-fun Lists() {
-    Column() {
-        CardContainer {
-            TitleList("Lista immutabile - listOf")
-            ListContainer(list = immutableList)
-        }
-        CardContainer {
-            TitleList("Lista mutabile - mutableListOf")
-            Subtitle("Remove element 1 = ${mutableList.remove(1)}")
-            ListContainer(mutableList)
-        }
-        CardContainer {
-            TitleList("Array (sempre immutabile) - arrayOf")
-            ArrayContainer(array1 as Array<Any>)
-        }
-
-    }
+fun ScreenTitle(text: String, color: Color) {
+    Text(
+        text = text,
+        modifier = Modifier.padding(vertical = 8.dp),
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        color = color
+    )
 }
 
 @Composable
@@ -70,9 +43,9 @@ fun CardContainer(content: @Composable () -> Unit) {
 }
 
 @Composable
-fun TitleList(text: String, modifier: Modifier = Modifier.padding(vertical = 8.dp)) {
+fun CardTitle(text: String, modifier: Modifier = Modifier) {
     Text(
-        modifier = modifier,
+        modifier = modifier.padding(vertical = 8.dp),
         color = Color.Red,
         fontWeight = FontWeight.Bold,
         text = text
@@ -80,7 +53,7 @@ fun TitleList(text: String, modifier: Modifier = Modifier.padding(vertical = 8.d
 }
 
 @Composable
-fun Subtitle(text: String) {
+fun CardSubtitle(text: String) {
     Text(
         fontWeight = FontWeight.Light,
         fontSize = 10.sp,
@@ -104,10 +77,4 @@ fun ArrayContainer(array: Array<Any>, modifier: Modifier = Modifier) {
             Text(modifier = Modifier.padding(4.dp), text = item.toString())
         }
     }
-}
-
-@Preview
-@Composable
-fun ListPreview() {
-    Lists()
 }

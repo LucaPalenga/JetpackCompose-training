@@ -75,7 +75,7 @@ class Shark2 : FishColor by GrayColor, FishAction2 by PrintFishAction("hunt and 
 @Composable
 fun InterfaceDelegation() {
     CardContainer {
-        TitleList(text = "InterfaceDelegation")
+        CardTitle(text = "InterfaceDelegation")
         Text(
             modifier = Modifier.padding(4.dp),
             text = "Plecostomus - color: ${Plecostomus4().color}, eat(): ${Plecostomus4().eat()}"

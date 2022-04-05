@@ -47,23 +47,102 @@ import com.example.jcex.ui.theme.statsIndicatorMiniCardColor
 
 @Composable
 fun CircularStatsIndicatorScreen() {
-    LazyColumn(modifier = Modifier.padding(8.dp)) {
+    LazyColumn(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        contentPadding = PaddingValues(8.dp)
+    ) {
         item {
             Text(
                 text = "StatsIndicator(total = 200f, val1 = 150f, val2 = 50f)",
                 fontSize = 12.sp
             )
-            StatsIndicator(total = 200f, val1 = 150f, val2 = 50f)
-            Spacer(modifier = Modifier.size(16.dp))
-            Text(
-                text = "StatsIndicatorMini(total = 10f, val1 = 2f, val2 = 8f, animated = false)",
-                fontSize = 12.sp
+            StatsIndicator(
+                modifier = Modifier.padding(20.dp),
+                total = 200f,
+                val1 = 150f,
+                val2 = 50f
             )
-//            StatsIndicatorMini(total = 200f, val1 = 150f, val2 = 50f, animated = false)
-            StatsIndicatorMini(total = 10f, val1 = 2f, val2 = 8f, animated = false)
-//            StatsIndicatorMini(total = 50f, val1 = 30f, val2 = 20f, animated = false)
-//            StatsIndicatorMini(total = 100f, val1 = 50f, val2 = 50f, animated = false)
-//            StatsIndicatorMini(total = 200f, val1 = 150f, val2 = 50f, animated = false)
+        }
+
+        item {
+            Row(Modifier.height(250.dp)) {
+                HorizontalPagerDots(
+                    pages = listOf(
+                        PageObj("card1") {
+                            StatsIndicatorMini(
+                                total = 10f,
+                                val1 = 2f,
+                                val2 = 8f,
+                                animated = false
+                            )
+                        },
+                        PageObj("card2") {
+                            StatsIndicatorMini(
+                                total = 50f,
+                                val1 = 30f,
+                                val2 = 20f,
+                                animated = false
+                            )
+                        },
+                        PageObj("card3") {
+                            StatsIndicatorMini(
+                                total = 100f,
+                                val1 = 50f,
+                                val2 = 50f,
+                                animated = false
+                            )
+                        },
+                        PageObj("card4") {
+                            StatsIndicatorMini(
+                                total = 200f,
+                                val1 = 150f,
+                                val2 = 50f,
+                                animated = false
+                            )
+                        },
+                    )
+                )
+            }
+
+//            Row(Modifier.height(250.dp)) {
+//                HorizontalPagerDots(
+//                    modifier = Modifier.wrapContentHeight(),
+//                    pages = listOf(
+//                        PageObj("card1") {
+//                            StatsIndicatorMini(
+//                                total = 10f,
+//                                val1 = 2f,
+//                                val2 = 8f,
+//                                animated = false
+//                            )
+//                        },
+//                        PageObj("card2") {
+//                            StatsIndicatorMini(
+//                                total = 50f,
+//                                val1 = 30f,
+//                                val2 = 20f,
+//                                animated = false
+//                            )
+//                        },
+//                        PageObj("card3") {
+//                            StatsIndicatorMini(
+//                                total = 100f,
+//                                val1 = 50f,
+//                                val2 = 50f,
+//                                animated = false
+//                            )
+//                        },
+//                        PageObj("card4") {
+//                            StatsIndicatorMini(
+//                                total = 200f,
+//                                val1 = 150f,
+//                                val2 = 50f,
+//                                animated = false
+//                            )
+//                        },
+//                    )
+//                )
+//            }
         }
     }
 }
@@ -96,7 +175,7 @@ fun StatsIndicatorMini(
         backgroundColor = statsIndicatorMiniCardColor
     ) {
         Row(
-            modifier = modifier,
+            modifier = modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             CircularStatsIndicatorComponent(
@@ -109,7 +188,7 @@ fun StatsIndicatorMini(
                 animated = animated,
                 diameter = 140.dp,
                 durationMillis = durationMillis,
-                modifier = Modifier.padding(20.dp)
+//                modifier = Modifier.padding(20.dp)
             ) {
                 TextStatsIndicatorContent(value = total.toInt(), label = "total")
             }
@@ -179,7 +258,7 @@ fun StatsIndicator(
             innerLineColor = totalColor,
             animated = animated,
             durationMillis = durationMillis,
-            modifier = Modifier.padding(20.dp)
+//            modifier = Modifier.padding(20.dp)
         ) {
             TextStatsIndicatorContent(value = total.toInt(), label = "total")
         }
@@ -582,11 +661,34 @@ fun CircularStatsIndicatorComponentPrev() {
 @Preview
 @Composable
 fun StatsIndicatorMiniPrev() {
-    Column() {
-        StatsIndicatorMini(total = 10f, val1 = 2f, val2 = 8f, animated = false)
-        StatsIndicatorMini(total = 50f, val1 = 30f, val2 = 20f, animated = false)
-        StatsIndicatorMini(total = 100f, val1 = 50f, val2 = 50f, animated = false)
-        StatsIndicatorMini(total = 200f, val1 = 150f, val2 = 50f, animated = false)
+    Row(Modifier.height(250.dp)) {
+        HorizontalPagerDots(
+            pages = listOf(
+                PageObj("card1") {
+                    StatsIndicatorMini(
+                        total = 10f,
+                        val1 = 2f,
+                        val2 = 8f,
+                        animated = false
+                    )
+                },
+                PageObj("card2") {
+                    StatsIndicatorMini(total = 50f, val1 = 30f, val2 = 20f, animated = false)
+                },
+                PageObj("card3") {
+                    StatsIndicatorMini(total = 100f, val1 = 50f, val2 = 50f, animated = false)
+                },
+                PageObj("card4") {
+                    StatsIndicatorMini(total = 200f, val1 = 150f, val2 = 50f, animated = false)
+                },
+            )
+        )
     }
+//    Column() {
+//        StatsIndicatorMini(total = 10f, val1 = 2f, val2 = 8f, animated = false)
+//        StatsIndicatorMini(total = 50f, val1 = 30f, val2 = 20f, animated = false)
+//        StatsIndicatorMini(total = 100f, val1 = 50f, val2 = 50f, animated = false)
+//        StatsIndicatorMini(total = 200f, val1 = 150f, val2 = 50f, animated = false)
+//    }
 
 }

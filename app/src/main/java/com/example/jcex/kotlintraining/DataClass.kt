@@ -2,6 +2,7 @@ package com.example.jcex.kotlintraining
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ fun DataClass() {
     val decoration3 = Decoration("slate")
 
     CardContainer {
-        TitleList(text = "Data class")
+        CardTitle(text = "Data class")
 
         Text(text = "decoration1 = $decoration1")
         Text(text = "decoration2 = $decoration2")
@@ -99,12 +100,20 @@ fun DataClass() {
         Text(text = "rock= $rock")
         Text(text = "wood = $wood")
         Text(text = "diver = $diver")
-        Subtitle(
+        CardSubtitle(
             text = "NB: if you don't need one or more of the properties you can skip by using _ - (rock, _, diver) = decoration5"
         )
     }
 }
 
+@Composable
+fun ClassScreeen() {
+    LazyColumn {
+        item { InterfaceDelegation() }
+        item { DataClass() }
+        item { EnumClass() }
+    }
+}
 
 @Preview
 @Composable

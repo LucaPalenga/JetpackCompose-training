@@ -1,11 +1,8 @@
 package com.example.jcex.kotlintraining
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 
 
 private interface FishAction2 {
@@ -76,14 +73,36 @@ class Shark2 : FishColor by GrayColor, FishAction2 by PrintFishAction("hunt and 
 fun InterfaceDelegation() {
     CardContainer {
         CardTitle(text = "InterfaceDelegation")
-        Text(
-            modifier = Modifier.padding(4.dp),
-            text = "Plecostomus - color: ${Plecostomus4().color}, eat(): ${Plecostomus4().eat()}"
+        CardSubtitle(
+            text = "object GoldColor : FishColor {\n" +
+                    "    override val color = \"gold\"\n" +
+                    "}"
         )
-        Text(
-            modifier = Modifier.padding(4.dp),
-            text = "Shark - color: ${Shark2().color}, eat(): ${Shark2().eat()}"
+        SmallSpacer()
+        CardSubtitle(
+            text = "class PrintFishAction(val food: String) : FishAction {\n" +
+                    "    override fun eat(): String {\n" +
+                    "        return food\n" +
+                    "    }\n" +
+                    "}"
         )
+        SmallSpacer()
+        CardSubtitle(
+            text = "class Plecostomus(fishColor: FishColor = GoldColor) : FishColor by fishColor" +
+                    "FishAction by PrintFishAction(\"eat algae\")"
+        )
+        SmallSpacer()
+        CardSubtitleOSS(
+            text = "This class is delegating FishAction implementation to PrintFishAction and" +
+                    "FishColor to GoldColor (this one is parametrized so GoldColor is default," +
+                    "but it can be modified - for ex. Plecostomus(GrayColor)"
+        )
+        SmallSpacer()
+        Text(text = "Plecostomus().color -> ${Plecostomus4().color}")
+        Text(text = "Plecostomus(GrayColor).color -> ${Plecostomus4(GrayColor).color}")
+        Text(text = "Plecostomus().eat() -> ${Plecostomus4().eat()}\")")
+//        Text(text = "Shark().color -> ${Shark2().color}")
+//        Text(text = "Shark().eat() -> ${Shark2().eat()}")
     }
 }
 

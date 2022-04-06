@@ -36,10 +36,8 @@ fun KotlinTrainingScreen() {
             count = TabPage.values().size,
             state = pagerState
         ) { page ->
-            when (page) {
-                0 -> screenState.value = TabPage.Collections
-                1 -> screenState.value = TabPage.Classes
-            }
+            screenState.value = TabPage.values()[page]
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 TitleWithIcon(
                     title = screenState.value.name,

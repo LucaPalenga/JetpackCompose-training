@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 
 @Composable
-fun Collections() {
+fun CollectionsScreen() {
     /**
      * Lista immutabile
      */
@@ -34,25 +34,71 @@ fun Collections() {
      */
     val mutableMap = mutableMapOf(1 to "ciao")
 
+    /**
+     * Pair
+     */
+    val equipment = "fish net" to "catching fish"
+    val equipment2 = ("fish net" to "catching fish") to "equipment"
+    //equipment2.first is equipment2.second   ⇒   (fish net, catching fish) is equipment
+    //equipment2.first.second   ⇒   catching fish
+
+    /**
+     * Triple
+     */
+    val numbers = Triple(6, 9, 42)
+    //numbers.toList()  ⇒   [6, 9, 42]
+
+    /**
+     * Destructure of pairs and triples
+     */
+    //val (tool,use) = equipment
+    val (n1, n2, n3) = numbers
+
+
     LazyColumn() {
         item {
             CardContainer {
-                CardTitle("Lista immutabile - listOf")
+                CardTitle("Lista immutabile")
+                CardSubtitle(text = "listOf(\"pippo\", \"pluto\", \"paperino\")")
                 ListContainer(list = immutableList)
             }
         }
         item {
             CardContainer {
-                CardTitle("Lista mutabile - mutableListOf")
-                CardSubtitle("Remove element 1 = ${mutableList.remove(1)}")
+                CardTitle("Lista mutabile")
+                CardSubtitle("mutableListOf(1, 2, 3, 4)")
+                CardSubtitle("mutableList.remove(1) = ${mutableList.remove(1)}")
                 ListContainer(mutableList)
-                Text(text = ".sum() -> ${mutableList.sum()}")
+                Text(text = "list.sum() -> ${mutableList.sum()}")
             }
         }
         item {
             CardContainer {
-                CardTitle("Array (sempre immutabile) - arrayOf")
+                CardTitle("Array (sempre immutabile)")
+                CardSubtitle(text = "arrayOf(\"pippo\", 1, 2.0)")
                 ArrayContainer(array1 as Array<Any>)
+            }
+        }
+        item {
+            CardContainer {
+                CardTitle(text = "Pair")
+                CardSubtitle(
+                    text = "val equipment = \"fish net\" to \"catching fish\"\n" +
+                            "val equipment2 = (\"fish net\" to \"catching fish\") to \"equipment\""
+                )
+                Text(text = "equipment.first -> ${equipment.first}")
+                Text(text = "equipment2.first.second -> ${equipment2.first.second}")
+            }
+        }
+        item {
+            CardContainer {
+                CardTitle(text = "Triple")
+                CardSubtitle(
+                    text = "val numbers = Triple(6, 9, 42)"
+                )
+                Text(text = "numbers.toList() -> ${numbers.toList()}")
+                CardSubtitle(text = "Destructure of pair and triple -> val (n1, n2, n3) = numbers")
+                Text(text = "n1 = $n1, n2 = $n2, n3 = $n3")
             }
         }
         item {
@@ -89,5 +135,5 @@ fun Collections() {
 @Preview
 @Composable
 fun CollectionsPreview() {
-    Collections()
+    CollectionsScreen()
 }

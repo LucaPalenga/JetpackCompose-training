@@ -62,9 +62,14 @@ fun CircularStatsIndicatorScreen() {
                 val1 = 150f,
                 val2 = 50f
             )
+            Spacer(modifier = Modifier.size(16.dp))
         }
 
         item {
+            Text(
+                text = "HorizontalPagerDots(listOf(PageObj(StatsIndicatorMini(...))...)",
+                fontSize = 12.sp
+            )
             Row(Modifier.height(250.dp)) {
                 HorizontalPagerDots(
                     pages = listOf(
@@ -103,46 +108,6 @@ fun CircularStatsIndicatorScreen() {
                     )
                 )
             }
-
-//            Row(Modifier.height(250.dp)) {
-//                HorizontalPagerDots(
-//                    modifier = Modifier.wrapContentHeight(),
-//                    pages = listOf(
-//                        PageObj("card1") {
-//                            StatsIndicatorMini(
-//                                total = 10f,
-//                                val1 = 2f,
-//                                val2 = 8f,
-//                                animated = false
-//                            )
-//                        },
-//                        PageObj("card2") {
-//                            StatsIndicatorMini(
-//                                total = 50f,
-//                                val1 = 30f,
-//                                val2 = 20f,
-//                                animated = false
-//                            )
-//                        },
-//                        PageObj("card3") {
-//                            StatsIndicatorMini(
-//                                total = 100f,
-//                                val1 = 50f,
-//                                val2 = 50f,
-//                                animated = false
-//                            )
-//                        },
-//                        PageObj("card4") {
-//                            StatsIndicatorMini(
-//                                total = 200f,
-//                                val1 = 150f,
-//                                val2 = 50f,
-//                                animated = false
-//                            )
-//                        },
-//                    )
-//                )
-//            }
         }
     }
 }
@@ -368,7 +333,7 @@ fun CircularStatsIndicatorComponent(
 
 
     Box(
-        modifier
+        modifier = modifier
             .padding(rightExternalLineStrokeWidth)
             .size(diameter)
     ) {

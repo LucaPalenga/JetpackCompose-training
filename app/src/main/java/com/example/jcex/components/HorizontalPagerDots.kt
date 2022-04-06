@@ -21,6 +21,7 @@ import com.example.jcex.ui.theme.colorVal1
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import kotlin.math.absoluteValue
 
 /***
  * PAllUA - 05/04/22
@@ -48,64 +49,35 @@ fun HorizontalPagerDots(pages: List<PageObj>, modifier: Modifier = Modifier) {
 
     val currentIndex = pagerState.currentPage
     val currentPageOffset = pagerState.currentPageOffset
-    val maxOffset = 0.3f
-    val maxOffsetDp = 30.dp
+    val minPerc = 0.7f
 
-//    val expanded = rememberSaveable { mutableStateOf(false) }
-//    val animatedSizeDp: Dp by animateDpAsState(targetValue = if (expanded.value) 300.dp else 100.dp)
     Column(horizontalAlignment = CenterHorizontally) {
         HorizontalPager(
             modifier = modifier.weight(1f),
             count = pages.size,
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 32.dp),
-//        verticalAlignment = Alignment.Top
         ) { page ->
             screenState.value = pages[page]
 
-            //TODO pallua
             val percHeight = when (page) {
                 currentIndex -> {
-//                    currentPageOffset.absoluteValue
-                    1f
+                    1f - (currentPageOffset.absoluteValue * (1 - minPerc))
                 }
                 currentIndex - 1 -> {
-//                    1 + currentPageOffset.coerceAtMost(0f)
-//                    (1 - currentPageOffset) * maxOffset
-                    1 * maxOffset
+                    (Math.abs(currentPageOffset) * (1 - minPerc)) + minPerc
                 }
                 currentIndex + 1 -> {
-//                    1 - currentPageOffset.coerceAtLeast(0f)
-//                    (1 + currentPageOffset) * maxOffset
-                    1 * maxOffset
+                    (currentPageOffset * (1 - minPerc)) + minPerc
                 }
                 else -> {
                     1f
                 }
             }
-//            val offset = maxOffsetDp * when (page) {
-//                currentIndex -> {
-////                    currentPageOffset.absoluteValue
-//                    0f
-//                }
-//                currentIndex - 1 -> {
-//                    1 + currentPageOffset.coerceAtMost(0f)
-//                }
-//                currentIndex + 1 -> {
-//                    1 - currentPageOffset.coerceAtLeast(0f)
-//                }
-//                else -> {
-//                    1f
-//                }
-//            }
 
-//                ScreenTitle(text = screenState.value.name, color = Color.Red)
-            Box(
-                Modifier
-                    .fillMaxHeight(percHeight)
-//                    .fillMaxWidth(0.7f)
-//                    .fillMaxHeight(0.7f)
-//                    .offset(y = -offset),
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxHeight(percHeight)
             ) {
                 screenState.value.composable.invoke()
             }

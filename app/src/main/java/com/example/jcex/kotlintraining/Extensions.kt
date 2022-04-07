@@ -16,8 +16,8 @@ fun String.hasSpaces(): Boolean {
 fun ExtensionStringHasSpaces() {
     val stringTest = "Does it have spaces?"
     CardContainer {
-        CardTitle(text = "String extension")
-        CardSubtitle(
+        Title(text = "String extension")
+        Code(
             text = "fun String.hasSpaces(): Boolean {\n" +
                     "    return this.find { it == ' ' } != null\n" +
                     "}"
@@ -47,13 +47,13 @@ val aquariumPlant: AquariumPlant = plant    //this will stamps AquariumPlant!
 @Composable
 fun ExtensionLimitation() {
     CardContainer {
-        CardTitle(text = "Extension limitations")
-        CardSubtitle(text = "class AquariumPlant(val color: String, private val size: Int)")
+        Title(text = "Extension limitations")
+        Code(text = "class AquariumPlant(val color: String, private val size: Int)")
         Text(text = "fun AquariumPlant.isRed() = color == \"red\" // OK")
         Text(text = "fun AquariumPlant.isBig() = size > 50  //NO!")
         SmallSpacer()
 
-        CardSubtitle(
+        Code(
             text = "class GreenLeafyPlant(size: Int) : AquariumPlant(\"green\", size)\n" +
                     "fun AquariumPlant.print() = println(\"AquariumPlant\")\n" +
                     "fun GreenLeafyPlant.print() = println(\"GreenLeafyPlant\")\n" +
@@ -64,7 +64,7 @@ fun ExtensionLimitation() {
         Text(text = "plant.print()-> ${plant.print()}")
         Text(text = "aquariumPlant.print() -> ${aquariumPlant.print()}")
         SmallSpacer()
-        CardSubtitleOSS(text = "Extension functions are resolved statically, at compile time, based on the type of the variable")
+        Note(text = "Extension functions are resolved statically, at compile time, based on the type of the variable")
 
     }
 }
@@ -79,8 +79,8 @@ val AquariumPlant.isGreen: Boolean
 @Composable
 fun ExtensionProperty() {
     CardContainer {
-        CardTitle(text = "Extension property")
-        CardSubtitle(
+        Title(text = "Extension property")
+        Code(
             text = "val AquariumPlant.isGreen: Boolean\n" +
                     "    get() = color == \"green\""
         )
@@ -106,9 +106,9 @@ val plantNullable: AquariumPlant? = null
 @Composable
 fun NullableReceivers() {
     CardContainer {
-        CardTitle(text = "Nullable receivers")
-        CardSubtitleOSS(text = "The class you extend is called the receiver")
-        CardSubtitle(
+        Title(text = "Nullable receivers")
+        Note(text = "The class you extend is called the receiver")
+        Code(
             text = "fun AquariumPlant?.pull() {\n" +
                     "    this?.apply {\n" +
                     "        println(\"removing \$this\")\n" +
@@ -117,7 +117,7 @@ fun NullableReceivers() {
         )
         Text(text = "plantNull -> $plantNullable")
         Text(text = "plantNull.pull() -> ${plantNullable.pull()}")
-        CardSubtitleOSS(
+        Note(
             text = "In this case, there is no output when you run the program. Because plant is null, the inner stringOutput(this) is not called."
         )
     }

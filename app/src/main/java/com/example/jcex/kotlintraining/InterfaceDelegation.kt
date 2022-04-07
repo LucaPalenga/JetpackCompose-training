@@ -72,14 +72,14 @@ class Shark2 : FishColor by GrayColor, FishAction2 by PrintFishAction("hunt and 
 @Composable
 fun InterfaceDelegation() {
     CardContainer {
-        CardTitle(text = "InterfaceDelegation")
-        CardSubtitle(
+        Title(text = "InterfaceDelegation")
+        Code(
             text = "object GoldColor : FishColor {\n" +
                     "    override val color = \"gold\"\n" +
                     "}"
         )
         SmallSpacer()
-        CardSubtitle(
+        Code(
             text = "class PrintFishAction(val food: String) : FishAction {\n" +
                     "    override fun eat(): String {\n" +
                     "        return food\n" +
@@ -87,12 +87,12 @@ fun InterfaceDelegation() {
                     "}"
         )
         SmallSpacer()
-        CardSubtitle(
+        Code(
             text = "class Plecostomus(fishColor: FishColor = GoldColor) : FishColor by fishColor" +
                     "FishAction by PrintFishAction(\"eat algae\")"
         )
         SmallSpacer()
-        CardSubtitleOSS(
+        Note(
             text = "This class is delegating FishAction implementation to PrintFishAction and" +
                     "FishColor to GoldColor (this one is parametrized so GoldColor is default," +
                     "but it can be modified - for ex. Plecostomus(GrayColor)"

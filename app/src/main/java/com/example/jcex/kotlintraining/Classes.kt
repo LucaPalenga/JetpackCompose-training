@@ -34,12 +34,12 @@ fun DataClass() {
     val decoration3 = Decoration("slate")
 
     CardContainer {
-        CardTitle(text = "Data class")
-        CardSubtitle(text = "val decoration1 = Decoration(\"granite\") -> $decoration1")
-        CardSubtitle(text = "val decoration2 = Decoration(\"slate\") -> $decoration2")
-        CardSubtitle(text = "val decoration3 = Decoration(\"slate\") -> $decoration3")
+        Title(text = "Data class")
+        Code(text = "val decoration1 = Decoration(\"granite\") -> $decoration1")
+        Code(text = "val decoration2 = Decoration(\"slate\") -> $decoration2")
+        Code(text = "val decoration3 = Decoration(\"slate\") -> $decoration3")
         SmallSpacer()
-        CardSubtitle(text = "Kotlin data class objects have some extra benefits, such as utilities for printing and copying")
+        Note(text = "Kotlin data class objects have some extra benefits, such as utilities for printing and copying")
         SmallSpacer()
 
         /**
@@ -73,7 +73,7 @@ fun DataClass() {
          */
         val decoration4 = decoration1.copy()
         TextSemibold(text = "Copy")
-        CardSubtitle(text = "decoration4 = decoration1.copy()")
+        Code(text = "decoration4 = decoration1.copy()")
         Text(text = "decoration1 == decoration4 -> ${decoration1 == decoration4}")    //true
         Text(text = "decoration1 === decoration4 -> ${decoration1 === decoration4}")    //false
         SmallSpacer()
@@ -84,7 +84,7 @@ fun DataClass() {
          */
         TextSemibold(text = "Destructuring")
         val decoration5 = Decoration2("crystal", "wood", "diver")
-        CardSubtitle(text = "decoration5 = $decoration5")
+        Code(text = "decoration5 = $decoration5")
 
         val (rock, wood, diver) = decoration5
         Text(text = "(rock, wood, diver) = decoration5")
@@ -92,7 +92,7 @@ fun DataClass() {
         Text(text = "wood = $wood")
         Text(text = "diver = $diver")
         SmallSpacer()
-        CardSubtitle(
+        Note(
             text = "NB: if you don't need one or more of the properties you can skip by using _ - (rock, _, diver) = decoration5"
         )
     }
@@ -110,8 +110,8 @@ enum class Direction(val degrees: Int) {
 @Composable
 fun EnumClass() {
     CardContainer {
-        CardTitle(text = "Enum class")
-        CardSubtitle(text = "Direction(degrees: Int)\n{ NORTH(0), SOUTH(180), EAST(90), WEST(270) }")
+        Title(text = "Enum class")
+        Code(text = "Direction(degrees: Int)\n{ NORTH(0), SOUTH(180), EAST(90), WEST(270) }")
         SmallSpacer()
         Text("Direction.EAST.name -> ${Direction.EAST.name}")
         Text("Direction.EAST.ordinal -> ${Direction.EAST.ordinal}")
@@ -145,8 +145,8 @@ fun matchSeal(seal: Seal): String = when (seal) {
 @Composable
 fun SealedClass() {
     CardContainer {
-        CardTitle(text = "Sealed class")
-        CardSubtitle(text = "This type of class can be subclassed only inside the file which it's declared")
+        Title(text = "Sealed class")
+        Note(text = "This type of class can be subclassed only inside the file which it's declared")
         androidx.compose.material3.Text(
             text = "sealed class Seal\n" +
                     "class SeaLion : Seal()\n" +

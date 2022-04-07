@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.jcex.ui.theme.Shapes
+import com.example.jcex.ui.theme.SourceCodePro
 
 
 // region containers
@@ -66,7 +67,7 @@ fun ScreenTitle(text: String, color: Color, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CardTitle(text: String, modifier: Modifier = Modifier) {
+fun Title(text: String, modifier: Modifier = Modifier) {
     Text(
         modifier = modifier.padding(bottom = 8.dp),
         color = Color.Red,
@@ -76,17 +77,17 @@ fun CardTitle(text: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun CardSubtitle(text: String, modifier: Modifier = Modifier) {
+fun Code(text: String, modifier: Modifier = Modifier) {
     Text(
         modifier = modifier,
-        fontWeight = FontWeight.Light,
         fontSize = 12.sp,
+        fontFamily = SourceCodePro,
         text = text
     )
 }
 
 @Composable
-fun CardSubtitleOSS(text: String, modifier: Modifier = Modifier) {
+fun Note(text: String, modifier: Modifier = Modifier) {
     Text(
         modifier = modifier,
         fontWeight = FontWeight.Light,

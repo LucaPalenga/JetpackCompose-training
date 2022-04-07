@@ -85,8 +85,8 @@ fun increaseDirty(start: Int) = start + 1
 @Composable
 fun WhenExpression(weekDay: String) {
     CardContainer {
-        CardTitle(text = "When expression")
-        CardSubtitle(
+        Title(text = "When expression")
+        Code(
             text = "fun fishFood(day: String): String {\n" +
                     "    return when (day) {\n" +
                     "        \"Monday\" -> \"flakes\"\n" +
@@ -107,14 +107,14 @@ fun WhenExpression(weekDay: String) {
 @Composable
 fun CompactFunction(weekDay: String) {
     CardContainer {
-        CardTitle(text = "Compact function")
-        CardSubtitle(
+        Title(text = "Compact function")
+        Code(
             text = "fun isSunday(day: String) = day == \"Sunday\"\n" +
                     "fun isHot(temperature: Int) = temperature > 30\n" +
                     "fun isDirty(dirty: Int) = dirty > 30"
         )
         SmallSpacer()
-        CardSubtitle(
+        Code(
             text = "fun shouldChangeFishWater(day: String, temperature: Int = 22, dirty: Int = 20): Boolean {\n" +
                     "    return when {\n" +
                     "        isHot(temperature) -> true\n" +
@@ -124,7 +124,7 @@ fun CompactFunction(weekDay: String) {
                     "    }\n" +
                     "}"
         )
-        CardSubtitleOSS(text = "best practice: put parameters with default values after the ones without values")
+        Note(text = "best practice: put parameters with default values after the ones without values")
         SmallSpacer()
         Text(text = "shouldChangeFishWater($weekDay) -> ${shouldChangeFishWater(weekDay)}")
     }
@@ -133,8 +133,8 @@ fun CompactFunction(weekDay: String) {
 @Composable
 fun FilterFunction() {
     CardContainer {
-        CardTitle(text = "Filter")
-        CardSubtitle(text = "val decorations = listOf(\"rock\", \"pagoda\", \"plastic plant\", \"alligator\", \"flowerpot\")")
+        Title(text = "Filter")
+        Code(text = "val decorations = listOf(\"rock\", \"pagoda\", \"plastic plant\", \"alligator\", \"flowerpot\")")
         SmallSpacer()
         Text(
             text = "Eager filter - immediatelly create a new list",
@@ -151,7 +151,7 @@ fun FilterFunction() {
                 decorations.asSequence().filter { it[0] == 'p' }
             }"
         )
-        CardSubtitleOSS(text = "lazyFilter is not a list, to access list use .toList()")
+        Note(text = "lazyFilter is not a list, to access list use .toList()")
         Text(
             text = "decorations.asSequence().filter { it[0] == 'p' }.toList() -> ${
                 decorations.asSequence().filter { it[0] == 'p' }.toList()
@@ -163,8 +163,8 @@ fun FilterFunction() {
 @Composable
 fun MapFunction() {
     CardContainer {
-        CardTitle(text = "Map")
-        CardSubtitle(text = "val map = decorations.map { println(\"access: \$it\") }")
+        Title(text = "Map")
+        Code(text = "val map = decorations.map { println(\"access: \$it\") }")
         Text(text = "map -> $map")
     }
 }
@@ -172,9 +172,9 @@ fun MapFunction() {
 @Composable
 fun LambdaFunction() {
     CardContainer {
-        CardTitle(text = "Lambdas")
-        CardSubtitle(text = "val waterFilter: (Int) -> (Int) = { dirty -> dirty / 2 }")
-        CardSubtitle(
+        Title(text = "Lambdas")
+        Code(text = "val waterFilter: (Int) -> (Int) = { dirty -> dirty / 2 }")
+        Code(
             text = "fun updateDirty(dirty: Int, operation: (Int) -> (Int)): Int {\n" +
                     "    return operation(dirty)\n" +
                     "}"
@@ -182,9 +182,9 @@ fun LambdaFunction() {
         Text(text = "updateDirty(30, waterFilter) -> ${updateDirty(30, waterFilter)}")
         SmallSpacer()
 
-        CardSubtitle(text = "fun increaseDirty(start: Int) = start + 1")
+        Code(text = "fun increaseDirty(start: Int) = start + 1")
         Text(text = "updateDirty(15, ::increaseDirty) -> ${updateDirty(15, ::increaseDirty)}")
-        CardSubtitleOSS(text = ":: specifies than i'm passing a regular function")
+        Note(text = ":: specifies than i'm passing a regular function")
     }
 }
 

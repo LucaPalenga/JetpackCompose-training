@@ -58,31 +58,31 @@ fun CollectionsScreen() {
     LazyColumn() {
         item {
             CardContainer {
-                CardTitle("Lista immutabile")
-                CardSubtitle(text = "listOf(\"pippo\", \"pluto\", \"paperino\")")
+                Title("Lista immutabile")
+                Code(text = "listOf(\"pippo\", \"pluto\", \"paperino\")")
                 ListContainer(list = immutableList)
             }
         }
         item {
             CardContainer {
-                CardTitle("Lista mutabile")
-                CardSubtitle("mutableListOf(1, 2, 3, 4)")
-                CardSubtitle("mutableList.remove(1) = ${mutableList.remove(1)}")
+                Title("Lista mutabile")
+                Code("mutableListOf(1, 2, 3, 4)")
+                Code("mutableList.remove(1) = ${mutableList.remove(1)}")
                 ListContainer(mutableList)
                 Text(text = "list.sum() -> ${mutableList.sum()}")
             }
         }
         item {
             CardContainer {
-                CardTitle("Array (sempre immutabile)")
-                CardSubtitle(text = "arrayOf(\"pippo\", 1, 2.0)")
+                Title("Array (sempre immutabile)")
+                Code(text = "arrayOf(\"pippo\", 1, 2.0)")
                 ArrayContainer(array1 as Array<Any>)
             }
         }
         item {
             CardContainer {
-                CardTitle(text = "Pair")
-                CardSubtitle(
+                Title(text = "Pair")
+                Code(
                     text = "val equipment = \"fish net\" to \"catching fish\"\n" +
                             "val equipment2 = (\"fish net\" to \"catching fish\") to \"equipment\""
                 )
@@ -92,19 +92,19 @@ fun CollectionsScreen() {
         }
         item {
             CardContainer {
-                CardTitle(text = "Triple")
-                CardSubtitle(
+                Title(text = "Triple")
+                Code(
                     text = "val numbers = Triple(6, 9, 42)"
                 )
                 Text(text = "numbers.toList() -> ${numbers.toList()}")
-                CardSubtitle(text = "Destructure of pair and triple -> val (n1, n2, n3) = numbers")
+                Code(text = "Destructure of pair and triple -> val (n1, n2, n3) = numbers")
                 Text(text = "n1 = $n1, n2 = $n2, n3 = $n3")
             }
         }
         item {
             CardContainer {
-                CardTitle("HashMap - hashMapOf")
-                CardSubtitle(text = "hashMapOf(1 to \"A\", 2 to \"B\", 3 to \"C\")")
+                Title("HashMap - hashMapOf")
+                Code(text = "hashMapOf(1 to \"A\", 2 to \"B\", 3 to \"C\")")
                 Text(text = "hashMap.get(1) -> ${hashMap.get(1)}")
                 Text(text = "hashMap[1] -> ${hashMap[1]}")
                 Text(text = "hashMap[4]] -> ${hashMap[4]}")
@@ -121,8 +121,8 @@ fun CollectionsScreen() {
         }
         item {
             CardContainer {
-                CardTitle("Mutable map - mutableMapOf")
-                CardSubtitle(text = "mutableMapOf(1 to \"ciao\")")
+                Title("Mutable map - mutableMapOf")
+                Code(text = "mutableMapOf(1 to \"ciao\")")
                 Text(text = "mutableMap.put(2,\"hello\") -> ${mutableMap.put(2, "hello")}")
                 Text(text = "mutableMap = $mutableMap")
                 Text(text = "mutableMap.remove(1) -> ${mutableMap.remove(1)}")

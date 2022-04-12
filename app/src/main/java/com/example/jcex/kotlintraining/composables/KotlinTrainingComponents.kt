@@ -3,6 +3,7 @@ package com.example.jcex.kotlintraining
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -10,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.jcex.ui.theme.Shapes
 import com.example.jcex.ui.theme.SourceCodePro
 
 
@@ -24,7 +25,7 @@ fun CardContainer(content: @Composable () -> Unit) {
         Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        shape = Shapes.medium,
+        shape = RoundedCornerShape(8.dp),
         elevation = 2.dp
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
@@ -105,6 +106,11 @@ fun TextSemibold(text: String, modifier: Modifier = Modifier) {
 @Composable
 fun TextBold(text: String, modifier: Modifier = Modifier) {
     Text(modifier = modifier, text = text, fontWeight = FontWeight.Bold)
+}
+
+@Composable
+fun TextUncorrect(text: String) {
+    Text(text = text, textDecoration = TextDecoration.LineThrough)
 }
 
 // endregion texts

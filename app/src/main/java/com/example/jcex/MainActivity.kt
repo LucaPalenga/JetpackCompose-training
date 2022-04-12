@@ -1,20 +1,19 @@
 package com.example.jcex
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -24,6 +23,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.jcex.animations.HomeAnimations
 import com.example.jcex.components.ComposableScreen
+import com.example.jcex.drawermenu.DrawerBody
+import com.example.jcex.drawermenu.DrawerHeader
 import com.example.jcex.kotlintraining.KotlinTrainingScreen
 import com.example.jcex.layouts.StraggeredGridLab
 import com.example.jcex.state.TodoActivityScreen
@@ -37,69 +38,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-            // region dynamic theme
-
-            //  DynamicTheme(colorProvider = ColorProvider(appColorScheme)) {
-            //      MessageCard(Message("Ciao", "Pippo"))
-            //      Conversation(msgs = SampleData.conversationSample)
-            //  }
-
-            //endregion dynamictheme
-
-            // region components
-
-            //  MessageCard(Message("Ciao", "Pippo"))
-            //  Conversation(msgs = SampleData.conversationSample)
-            //  TextContent()
-
-            //  JCExTheme() {
-            //  ImageCard()
-            //  }
-
-            //  ComposeButton()
-
-            // endregion components
-
-            // region layouts
-
-            //  SimpleList()
-            //  LazyList()
-            //  LazyScrollingList()
-            //  CustomColumnLayoutLab()
-            //  StraggeredGridLab()
-            //  StraggeredGridWithCustomModifierLab()
-            //  ConstraintLayoutContent()
-            //  DecoupledConstraintLayout()
-            //  TwoTexts(text1 = "Hi", text2 = "there")
-
-            // endregion layouts
-
-            // region animations
-
-//            AnimationCodelabTheme {
-//                HomeAnimations()
-//            }
-
-            // endregion animations
-
-            // region accessibility
-
-            //  WindowCompat.setDecorFitsSystemWindows(window, false)
-
-            //  val appContainer = (application as JetnewsApplication).container
-            //  setContent {
-            //  JetnewsApp(appContainer)
-            //  }
-
-            // endregion accessibility
-
-            // region kotlin training
-
-            //  Lists()
-
-            // endregion kotlin training
-
             MdcTheme {
                 JCExApp()
             }
@@ -120,8 +58,15 @@ class MainActivity : ComponentActivity() {
                 Screen.Theming
             )
 
+        val context = LocalContext.current
 
-        Scaffold(bottomBar = { BottomNavBar(navigationController, screens) }) { innerPadding ->
+        Scaffold(drawerContent = {
+            DrawerHeader(modifier = Modifier.fillMaxWidth())
+            DrawerBody(modifier = Modifier.fillMaxWidth(), onItemClick = {
+                val intent = Intent(context, it.intentTo::class.java)
+                context.startActivity(intent)
+            })
+        }, bottomBar = { BottomNavBar(navigationController, screens) }) { innerPadding ->
             NavHost(
                 navController = navigationController,
                 startDestination = Screen.ComponentsScreen.route,

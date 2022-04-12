@@ -96,7 +96,6 @@ fun HighOrderFunction() {
         Code(text = "fun myWith(name: String, block: String.() -> Unit) {}")
         Note(text = "replacing with() with myWith() in withExample()")
         Text(text = "withExample() -> ${myWithExample()}")
-
     }
 }
 
@@ -157,12 +156,110 @@ fun ExploreBuiltInExtensions() {
     }
 }
 
+/**
+ * Inline functions
+ * Lambdas are objects. A lambda expression is an instance of a Function interface, which is itself a subtype of Object.
+ * The Function interface has a method, invoke(), which is overridden to call the lambda expression.
+ */
+//this creates an object
+val fishObj = myWith2(fish.name, object : Function1<String, Unit> {
+    override fun invoke(name: String) {
+        name.capitalize()
+    }
+})
+
+fun myWith2(name: String, block: String.() -> Unit) {
+    name.block()
+}
+
+/**
+ * If you're defining something like myWith() that you use everywhere, the overhead could add up
+ * Marking a function as inline means that every time the function is called, the compiler will actually transform the source code to "inline" the function.
+ * That is, the compiler will change the code to replace the lambda with the instructions inside the lambda.
+ */
+
+@Composable
+fun InlineFunctions() {
+    CardContainer {
+        Title(text = "Inline functions")
+        Note(text = "Lambdas are objects. A lambda expression is an instance of a Function interface, which is itself a subtype of Object.")
+        Note(text = "The Function interface has a method, invoke(), which is overridden to call the lambda expression.")
+        Code(
+            text = "with(fish.name, object : Function1<String, Unit> {\n" +
+                    "    override fun invoke(name: String) {\n" +
+                    "        name.capitalize()\n" +
+                    "    }\n" +
+                    "})"
+        )
+        Note(text = "It creates an object.")
+        Note(
+            text = "If you're defining something like myWith() that you use everywhere, the overhead could add up" +
+                    "Marking a function as inline means that every time the function is called, the compiler will actually transform the source code to \"inline\" the function." +
+                    "\nThat is, the compiler will change the code to replace the lambda with the instructions inside the lambda."
+        )
+        Code(
+            text = "inline myWith(fish.name) {\n" +
+                    "    capitalize()\n" +
+                    "}"
+        )
+        Note(text = "So marking myWith() with inline transform the call in inline call (cause compiler ")
+        Code(text = "fish.name.capitalize()")
+    }
+}
+
+/**
+ * Single abstract methods
+ * Some examples are Runnable, which has a single abstract method, run(),
+ * and Callable, which has a single abstract method, call()
+ * Es:
+ * public class JavaRun {
+ *   public static void runNow(Runnable runnable)
+ *   {
+ *     runnable.run();
+ *   }
+ * }
+ *
+ * Kotlin lets you instantiate an object that implements an interface by preceding the type with object:
+ */
+//val runnable = object: Runnable {
+//    override fun run() {
+//        println("I'm a Runnable")
+//    }
+//}
+val runnable = Runnable { println("I'm a Runnable") }
+
+@Composable
+fun SingleAbstractMethods() {
+    CardContainer {
+        Title(text = "Single Abstract Methods")
+        Note(text = "Some examples are Runnable, which has a single abstract method, run(), and Callable, which has a single abstract method, call()")
+        Code(
+            text = "public class JavaRun {\n" +
+                    "  public static void runNow(Runnable runnable) {\n" +
+                    "    runnable.run();\n" +
+                    "  }\n" +
+                    "}"
+        )
+        Note(text = "Kotlin lets you instantiate an object that implements an interface by preceding the type with object:")
+        Code(
+            "object : Runnable {\n" +
+                    "    override fun run() {\n" +
+                    "        println(\"I'm a Runnable\")\n" +
+                    "    }"
+        )
+        Note(text = "Kotlin provide a simple way to do that, use a lambda in place of the object to make this code a lot more compact")
+        Code(text = "Runnable { println(\"I'm a Runnable\") }")
+    }
+}
+
 @Composable
 fun FunctionalManipulationScreen() {
     LazyColumn {
         item { LabeledBreaks() }
         item { HighOrderFunction() }
         item { ExploreBuiltInExtensions() }
+        item { InlineFunctions() }
+        item { SingleAbstractMethods() }
     }
 }
 

@@ -38,7 +38,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.ViewToComposeTheming2">
 
-        <!--        android:name=".ViewToComposeActivity"-->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -50,6 +49,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewToComposeActivity" />
+        <activity android:name=".navigation.RallyActivity" />
+        <activity android:name=".material3.Material3Activity" />
 
         <!--        <activity-->
         <!--            android:name=".navigation.RallyActivity"-->
@@ -71,10 +72,6 @@
         <!--            </intent-filter>-->
 
         <!--        </activity>-->
-
-        <!--        <activity android:name=".theming.ThemingActivity" />-->
-        <!--        <activity android:name=".state.ActivityWithViewModel" />-->
-        <!--        <activity android:name=".material3.Material3Activity" />-->
 
     </application>
 

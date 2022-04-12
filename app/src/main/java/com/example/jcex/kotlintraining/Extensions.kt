@@ -49,8 +49,8 @@ fun ExtensionLimitation() {
     CardContainer {
         Title(text = "Extension limitations")
         Code(text = "class AquariumPlant(val color: String, private val size: Int)")
-        Text(text = "fun AquariumPlant.isRed() = color == \"red\" // OK")
-        Text(text = "fun AquariumPlant.isBig() = size > 50  //NO!")
+        Text(text = "fun AquariumPlant.isRed() = color == \"red\"   // OK")
+        TextUncorrect(text = "fun AquariumPlant.isBig() = size > 50")
         SmallSpacer()
 
         Code(

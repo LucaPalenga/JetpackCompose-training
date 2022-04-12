@@ -53,16 +53,16 @@ fun MyAppScreen() {
             Image(painterResource(id = R.drawable.cairoli), contentDescription = "img")
             TextButton(onClick = { /*TODO*/ }) {
                 Text(
-                    text = "Text Button",
+                    text = "Tema dinamico [Material3] sulla base del color scheme ricavato dal wallpaper di sfondo [dynamic color scheme]",
 //                    style = AppTypography.bodyLarge.copy(MaterialTheme.colorScheme.onTertiaryContainer)
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
-            androidx.compose.material3.Button(
+            Button(
                 modifier = Modifier.padding(8.dp),
                 onClick = { /*TODO*/ }
             ) {
-                Text(text = "Ciao", style = MaterialTheme.typography.titleMedium)
+                Text(text = "Material 3 Button", style = MaterialTheme.typography.titleMedium)
             }
         }
     }
@@ -109,7 +109,7 @@ fun MyTopAppBar() {
             )
             Spacer(Modifier.width(16.dp))
             Text(
-                text = "Pronto ?",
+                text = "Icon color tertiary",
 //                style = AppTypography.titleLarge.copy(
 //                    MaterialTheme.colorScheme.onPrimaryContainer
 //                ),

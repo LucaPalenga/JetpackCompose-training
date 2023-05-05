@@ -195,6 +195,22 @@
         <entry key="../../../../layout/compose-model-1649749287416.xml" value="0.16113527122911422" />
         <entry key="../../../../layout/compose-model-1649750102323.xml" value="0.25" />
         <entry key="../../../../layout/compose-model-1649750365931.xml" value="0.3040358744394619" />
+        <entry key="../../../../layout/compose-model-1649766309965.xml" value="0.25" />
+        <entry key="../../../../layout/compose-model-1661935331762.xml" value="0.4094728800611154" />
+        <entry key="../../../../layout/compose-model-1662564590481.xml" value="0.22677364864864866" />
+        <entry key="../../../../layout/compose-model-1662645998036.xml" value="0.5263157894736842" />
+        <entry key="../../../../layout/compose-model-1662706647285.xml" value="0.36944444444444446" />
+        <entry key="../../../../layout/compose-model-1667988975680.xml" value="0.38884644766997706" />
+        <entry key="../../../../layout/compose-model-1667988975736.xml" value="0.4094728800611154" />
+        <entry key="../../../../layout/compose-model-1668080565114.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1668085896892.xml" value="0.4094728800611154" />
+        <entry key="../../../../layout/compose-model-1668094507014.xml" value="0.22677364864864866" />
+        <entry key="../../../../layout/compose-model-1668098140668.xml" value="1.0" />
+        <entry key="../../../../layout/compose-model-1668159651600.xml" value="0.2063125481139338" />
+        <entry key="../../../../layout/compose-model-1668415553105.xml" value="0.22677364864864866" />
+        <entry key="../../../../layout/compose-model-1668499718506.xml" value="0.38884644766997706" />
+        <entry key="../../../../layout/compose-model-1668499718509.xml" value="0.4094728800611154" />
+        <entry key="../../../../layout/compose-model-1669041203556.xml" value="0.1710304054054054" />
         <entry key="../../.gradle/caches/transforms-3/e2b0578f8aa5be3008f578e88797c785/transformed/appcompat-1.4.1/res/layout/abc_action_menu_item_layout.xml" value="0.2453125" />
         <entry key="app/src/main/res/drawable/garden_tab_selector.xml" value="0.135" />
         <entry key="app/src/main/res/drawable/ic_detail_back.xml" value="0.135" />
@@ -210,7 +226,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

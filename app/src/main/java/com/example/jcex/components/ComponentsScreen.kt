@@ -59,7 +59,7 @@ fun NavigationHost(navController: NavHostController) {
         "Lists",
         "Scaffold",
         "HalfImageCard",
-        "CircularStatsIndicator"
+//        "CircularStatsIndicator"
     )
 
     NavHost(navController = navController, startDestination = "ComposableScreen") {
@@ -84,9 +84,10 @@ fun NavigationHost(navController: NavHostController) {
         composable("HalfImageCard") {
             HalfImageCard()
         }
-        composable("CircularStatsIndicator") {
-            CircularStatsIndicatorScreen()
-        }
+        //TODO commented cause it's z proj
+//        composable("CircularStatsIndicator") {
+//            CircularStatsIndicatorScreen()
+//        }
     }
 }
 
